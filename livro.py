@@ -107,10 +107,4 @@ class Livro:
         else:
             print('Titulo invalido.')
 
-    def findCapituloByTitulo(self, tituloCapitulo: str):
-        if isinstance(tituloCapitulo, str):
-            for i in self.__capitulos:
-                if i.titulo == tituloCapitulo:
-                    return i
-        else:
-            print('Titulo invalido.')
+    
