@@ -11,12 +11,11 @@ class TelaEmprestimo():
         if opcao == 1:
             inclui_emprestimo()
 
-    Livros: Capitaes da areia, Turma mônica
 
 
     def inclui_emprestimo():
         while True:
-            tituloLivroEmprestimo = input('Qual o título do livro?') - 0
+            tituloLivroEmprestimo = input('Qual o título do livro?') 
             if (tituloLivroEmprestimo != 0):
                 if (any(livro.titulo == tituloLivroEmprestimo for livro in Livros)):
                     nomeAlunoEmprestimo = input('Qual o nome do aluno que quer emprestar?')
