@@ -1,6 +1,5 @@
-from telaAluno import TelaAmigo
+from telaUsuario import TelaUsuario
 from aluno import Aluno
-from telaProfessor import TelaAmigo
 from professor import Professor
 
 class ControladorUsuario:
