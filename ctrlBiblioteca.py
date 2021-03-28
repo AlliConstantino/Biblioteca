@@ -10,7 +10,7 @@ from ctrlLivros import CtrlLivros
 class CtrlBiblioteca:
   def __init__(self):
     self.__ctrlLivros = ctrlLivros(self)
-    #self.__controlador_amigos = ControladorAmigos(self)
+    #self.__controladorUsuario = controladorUsuario(self)
     #self.__controlador_emprestimos = ControladorEmprestimos(self)
     #self.__tela_sistema = TelaSistema()
   
