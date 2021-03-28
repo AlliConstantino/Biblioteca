@@ -17,8 +17,8 @@ class CtrlBiblioteca:
     self.__controladorEmprestimo = controladorEmprestimo(self)
     self.__telaBiblioteca = telaBistema()
   
-    
-  def inicializa_sistema(self):
+  #troquei o nome pra startSystem p n ficar taaaao obvio
+  def startSystem(self):
     self.abre_tela()
   
   def cadastraLivros(self):
@@ -26,7 +26,7 @@ class CtrlBiblioteca:
     # Chama o controlador de Livros
 
   def cadastraAmigos(self):
-    # Chama o controlador de Amigos
+    # Chama o controlador de Usuarios
     self.__controladorUsuario.abre_tela()
 
   def cadastra_emprestimos(self):
