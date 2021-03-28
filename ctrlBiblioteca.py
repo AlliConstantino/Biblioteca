@@ -17,8 +17,6 @@ class CtrlBiblioteca:
     self.__controladorEmprestimo = controladorEmprestimo(self)
     self.__telaBiblioteca = telaBistema()
   
-  def inicializa_sistema(self):
-    self.abre_tela()
     
   def inicializa_sistema(self):
     self.abre_tela()
