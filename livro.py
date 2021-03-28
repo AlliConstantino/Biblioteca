@@ -56,6 +56,7 @@ class Livro:
     def autores(self):
         return self.__autores
 
+    #incluir no CtrlAutor ou no CtrlLivro (se bem que eu acho que é melhor no autor, mas não sei se essa classe vai continuar existindo)
     def incluirAutor(self, autor: Autor):
         if isinstance(autor, Autor):
             autor_incluso = False
@@ -81,30 +82,5 @@ class Livro:
         else:
             print('Autor invalido.')
 
-    def incluirCapitulo(self, numeroCapitulo: int, tituloCapitulo: str):
-        if isinstance(numeroCapitulo, int) and isinstance(tituloCapitulo, str):
-            capitulo_incluso = False
-            for i in self.__capitulos:
-                if i.titulo == tituloCapitulo:
-                    capitulo_incluso = True
-            if not capitulo_incluso:
-                self.__capitulos.append(
-                    Capitulo(numeroCapitulo, tituloCapitulo))
-            else:
-                print('O capitulo ja estava incluso.')
-        else:
-            print('Numero e titulo invalidos.')
-
-    def excluirCapitulo(self, tituloCapitulo: str):
-        if isinstance(tituloCapitulo, str):
-            capitulo_incluso = False
-            for i in self.__capitulos:
-                if i.titulo == tituloCapitulo:
-                    self.__capitulos.remove(i)
-                    capitulo_incluso = True
-            if not capitulo_incluso:
-                print('O capitulo nao estava incluso.')
-        else:
-            print('Titulo invalido.')
-
+    
     
