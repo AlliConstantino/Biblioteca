@@ -25,6 +25,7 @@ class CtrlBiblioteca:
   def cadastraLivros(self):
     pass
     # Chama o controlador de Livros
+    #CtrlLivros().
 
   def cadastraAmigos(self):
     # Chama o controlador de Usuarios
