@@ -8,7 +8,7 @@ from professor import Professor
 from ctrlLivros import CtrlLivros
 from controladorUsuario import ControladorUsuario
 from controladorEmprestimo import ControladorEmprestimo
-from telaBiblioteca import telaBiblioteca
+from telaBiblioteca import TelaBiblioteca
 
 class CtrlBiblioteca:
   def __init__(self):
