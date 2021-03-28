@@ -19,3 +19,19 @@ class CtrlBiblioteca:
   
   def inicializa_sistema(self):
     self.abre_tela()
+    
+  def inicializa_sistema(self):
+    self.abre_tela()
+  
+  def cadastraLivros(self):
+    pass
+    # Chama o controlador de Livros
+
+  def cadastraAmigos(self):
+    # Chama o controlador de Amigos
+    self.__controladorUsuario.abre_tela()
+
+  def cadastra_emprestimos(self):
+    pass
+    # Chama o controlador de Emprestimos
+  
