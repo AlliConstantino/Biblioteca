@@ -14,7 +14,7 @@ class CtrlBiblioteca:
   def __init__(self):
     self.__ctrlLivros = ctrlLivros(self)
     self.__controladorUsuario = controladorUsuario(self)
-    self.__controladorEmprestimos = controladorEmprestimos(self)
+    self.__controladorEmprestimo = controladorEmprestimo(self)
     self.__telaBiblioteca = telaBistema()
   
   def inicializa_sistema(self):
