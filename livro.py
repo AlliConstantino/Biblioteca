@@ -2,6 +2,7 @@ from editora import Editora
 from autor import Autor
 from capitulo import Capitulo
 
+#colocar os setter's em CtrlLivro
 
 class Livro:
     def __init__(
