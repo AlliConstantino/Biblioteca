@@ -22,11 +22,32 @@ class CtrlBiblioteca:
   def startSystem(self):
     self.abre_tela()
   
-  def cadastraLivros(self):
-    pass
-    # Chama o controlador de Livros
-    #CtrlLivros().
+  
+   def incluirLivro(self, livro: Livro):
+        if isinstance(livro, Livro):
+            livro_incluso = False
+            for i in self.__livros:
+                if i.codigo == livro.codigo:
+                    livro_incluso = True
+            if not livro_incluso:
+                self.__livros.append(livro)
+            else:
+                print('O livro ja estava incluso.')
+        else:
+            print('Livro invalido.')
 
+    def excluirLivro(self, livro: Livro):
+        if isinstance(livro, Livro):
+            livro_incluso = False
+            for i in self.__livros:
+                if i.codigo == livro.codigo:
+                    self.__livros.remove(i)
+                    livro_incluso = True
+            if not livro_incluso:
+                print('O livro nao estava incluso.')
+        else:
+            print('Livro invalido.')
+  
   def cadastraAmigos(self):
     # Chama o controlador de Usuarios
     self.__controladorUsuario.abre_tela()
