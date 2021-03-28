@@ -12,7 +12,7 @@ from telaBiblioteca import TelaBiblioteca
 
 class CtrlBiblioteca:
   def __init__(self):
-    #super().__init__(nome, telefone, email, data_nascimento, ano_atual)
+    super().__init__(codig,titulo,ano,editora,autor)
     self.__ctrlLivros = ctrlLivros(self)
     self.__controladorUsuario = controladorUsuario(self)
     self.__controladorEmprestimo = controladorEmprestimo(self)
