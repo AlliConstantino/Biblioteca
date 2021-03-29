@@ -29,11 +29,11 @@ from professor import Professor
 
   def abre_tela(self):
     #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-    lista_opcoes = {1: self.incluir_amigo, 3: self.lista_amigos}
+    lista_opcoes = {1: self.incluir_alun, 3: self.lista_alunos}
 
     continua = True
     while continua:
-      lista_opcoes[self.__tela_amigo.tela_opcoes()]() #não entendi essa parte
+      lista_opcoes[self.__tela_alunos.tela_opcoes()]() #não entendi essa parte
 
 
 #Professor
