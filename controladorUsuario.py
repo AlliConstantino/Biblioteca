@@ -10,6 +10,8 @@ from professor import Professor
     self.__telaUsuario = TelaUsuario()
     self.__ctrlBiblioteca = ctrlBiblioteca
 
+    
+#Nao esquecer de lidar com as excecoes
 
 #Aluno
   def incluir_aluno(self):
