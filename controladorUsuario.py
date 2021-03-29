@@ -2,8 +2,8 @@ from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
 
-  def __init__(self, ctrlBiblioteca): #Controlador da Biblioteca
-
+  def __init__(self, ctrlBiblioteca):
+    super().__init__(nome, telefone, email, data_nascimento, ano_atual)
     self.__aluno = []
     self.__professor = []
 
