@@ -2,16 +2,13 @@ from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
 
-class ControladorUsuario:
-
-  def __init__(self, controladorBiblioteca): #Controlador da Biblioteca
+  def __init__(self, ctrlBiblioteca): #Controlador da Biblioteca
 
     self.__aluno = []
     self.__professor = []
 
-    self.__telaUsuario = TelaUsuario() #pode ter o mesmo nome?
-    self.__controladorBiblioteca = controladorBiblioteca
-
+    self.__telaUsuario = TelaUsuario()
+    self.__ctrlBiblioteca = ctrlBiblioteca
 
 
 #Aluno
