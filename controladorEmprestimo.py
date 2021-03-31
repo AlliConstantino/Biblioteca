@@ -1,9 +1,13 @@
+from ctrlLivro import CtrlLivro
+from controladorUsuario import ControladorUsuario
 from telaEmprestimo import TelaEmprestimo
 from emprestimo import Emprestimo
 from livro import Livro
 from usuario import Usuario
 from dataEmprestimo import DataEmprestimo
 import datetime
+
+
 
 class ControladorEmprestimo():
 
@@ -12,7 +16,7 @@ class ControladorEmprestimo():
     self.__emprestimos = []
 
     self.__tela_emprestimo = TelaEmprestimo()
-    self.__controlador_livro = ControladorLivro()
+    self.__controlador_livro = CtrlLivro()
     self.__controlador_usuario = ControladorUsuario()
 #    self.__data_emprestimo = DataEmprestimo() - talvez precise usar isso
     self.__controlador_sistema = controlador_sistema
@@ -60,7 +64,7 @@ class ControladorEmprestimo():
             self.__emprestimos.append(emprestimo)
         else:
             print('Usuário inexistente, emprestimo não efetuado')
-    else if (usuario):
+    elif(usuario):
         print('Livro inexistente, emprestimo não efetuado')
     else: 
         print('Livro e usuário inexistentes, emprestimo não efetuado')
