@@ -29,7 +29,7 @@ from professor import Professor
 
   def abre_tela(self):
     #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-    lista_opcoes = {1: self.incluir_alun, 3: self.lista_alunos}
+    lista_opcoes = {1: self.incluir_aluno, 3: self.lista_alunos}
 
     continua = True
     while continua:
