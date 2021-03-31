@@ -1,4 +1,5 @@
 from ctrlLivro import CtrlLivro
+from ctrlBiblioteca import CtrlBiblioteca
 from controladorUsuario import ControladorUsuario
 from telaEmprestimo import TelaEmprestimo
 from emprestimo import Emprestimo
@@ -19,7 +20,7 @@ class ControladorEmprestimo():
     self.__controlador_livro = CtrlLivro()
     self.__controlador_usuario = ControladorUsuario()
 #    self.__data_emprestimo = DataEmprestimo() - talvez precise usar isso
-    self.__controlador_sistema = controlador_sistema
+    self.__ctrlBiblioteca = CtrlBiblioteca
 
 
 """
