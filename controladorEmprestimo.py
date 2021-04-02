@@ -95,6 +95,6 @@ class ControladorEmprestimo():
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_emprestimo.tela_opcoes()]()
+            lista_opcoes[self.__telaEmprestimo.tela_opcoes()]()
 
 
