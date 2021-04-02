@@ -1,5 +1,5 @@
+import emprestimo
 from ctrlLivro import CtrlLivro
-from ctrlBiblioteca import CtrlBiblioteca
 from controladorUsuario import ControladorUsuario
 from telaEmprestimo import TelaEmprestimo
 from emprestimo import Emprestimo
@@ -12,40 +12,15 @@ import datetime
 
 class ControladorEmprestimo():
 
-  def __init__(self, controlador_sistema):
+    def __init__(self, controlador_sistema):
 
-    self.__emprestimos = []
+        self.__emprestimos = []
 
-    self.__tela_emprestimo = TelaEmprestimo()
-    self.__controlador_livro = CtrlLivro()
-    self.__controlador_usuario = ControladorUsuario()
-#    self.__data_emprestimo = DataEmprestimo() - talvez precise usar isso
-    self.__ctrlBiblioteca = CtrlBiblioteca
-
-
-"""
-  incluir esse método no ControladorLivro
-
-  def retornaLivro(self, titulo):
-    for livro in self.__lista_livros:
-        if (livro.titulo == titulo):
-            return livro
-    return False
-"""
-
-"""
-  incluir esse método no ControladorUsuario
-
-  def retornaUsuario(self, nome):
-    for aluno in self.__lista_alunos:
-        if (aluno.nome == nome):
-            return aluno
-    for professor in self.__lista_professores:
-        if (professor.nome == nome):
-            return professor
-    return False
-"""
-
+        self.__tela_emprestimo = TelaEmprestimo()
+        self.__controlador_livro = CtrlLivro()
+        self.__controlador_usuario = ControladorUsuario()
+        self.__data_emprestimo = DataEmprestimo()
+        self.__controlador_sistema = controlador_sistema
 
 """
   a classe DataEmprestimo deve receber uma data no init, 
@@ -54,42 +29,72 @@ class ControladorEmprestimo():
   self.__dataInicial = dataAtual
   self.__dataFinal = dataAtual + datetime.timedelta(days=7)
 """
-    
-  def incluir_emprestimo(self):
-    dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
-    livro = self.__controlador_livro.retornaLivro(dados_emprestimo["tituloLivro"])
-    usuario = self.__controlador_usuario.retornaUsuario(dados_emprestimo["nomeUsuario"])
-    if (livro):
-        if (usuario):
-            emprestimo = Emprestimo(livro, usuario, DataEmprestimo(datetime.datetime.now()))
-            self.__emprestimos.append(emprestimo)
+    def inclui_emprestimo(self):
+        dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
+        livro = self.__controlador_livro.retornaLivro(dados_emprestimo["tituloLivro"])
+        usuario = self.__controlador_usuario.retornaUsuario(dados_emprestimo["nomeUsuario"])
+        if livro:
+            if usuario:
+                emprestimo = Emprestimo(livro, usuario, DataEmprestimo(datetime.datetime.now()))
+                self.__emprestimos.append(emprestimo)
+            else:
+                print('Usuário inexistente, emprestimo não efetuado')
+        elif usuario:
+            print('Livro inexistente, emprestimo não efetuado')
         else:
-            print('Usuário inexistente, emprestimo não efetuado')
-    elif(usuario):
-        print('Livro inexistente, emprestimo não efetuado')
-    else: 
-        print('Livro e usuário inexistentes, emprestimo não efetuado')
+            print('Livro e usuário inexistentes, emprestimo não efetuado')
 
 # Pensar em atribuir datetime.timedelta(days=7) como atributo "tempoLimite" na classe DataEmprestimo
 # verifica_Status ainda precisa de alguns ajustes
-  def verifica_status(self, emprestimo):
-    tempoEmEmprestimo = (datetime.datetime.now() - emprestimo.dataEmprestimo.dataInicial)
-    if (datetime.datetime.now() > emprestimo.dataEmprestimo.dataFinal):
-        return 'Seu emprestimo está atrasado há ' + tempoEmEmprestimo - datetime.timedelta(days=7) + ' dias'
-    else:
-        return 'Seu emprestimo foi feito há ' + tempoEmEmprestimo + 'dias'
+    def verifica_status(self, emprestimo):
+        tempoEmEmprestimo = (datetime.datetime.now() - emprestimo.dataEmprestimo.dataInicial)
+        if (datetime.datetime.now() > emprestimo.dataEmprestimo.dataFinal):
+            return 'Seu emprestimo está atrasado há ' + tempoEmEmprestimo - datetime.timedelta(days=7) + ' dias'
+        else:
+            return 'Seu emprestimo foi feito há ' + tempoEmEmprestimo + 'dias'
 
-  def lista_emprestimos(self):
-    for emprestimo in self.__emprestimos:
-      self.__tela_emprestimo.mostra_emprestimo({"tituloLivro": emprestimo.livro.titulo, "nomeUsuario": emprestimo.usuario.nome, 
-      "dataInicial": emprestimo.dataEmprestimo.dataIncial, "dataFinal": emprestimo.dataEmprestimo.dataFinal,
-      "status": verifica_status(emprestimo)})
+    def lista_emprestimos(self):
+        for emprestimo in self.__emprestimos:
+            self.__tela_emprestimo.mostra_emprestimo({"tituloLivro": emprestimo.livro.titulo, "nomeUsuario": emprestimo.usuario.nome,
+            "dataInicial": emprestimo.dataEmprestimo.dataIncial, "dataFinal": emprestimo.dataEmprestimo.dataFinal,
+            "status": verifica_status(emprestimo)})
 
-  def abre_tela(self):
-    #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-    lista_opcoes = {1: self.incluir_emprestimo, 3: self.lista_emprestimos}
+    def altera_emprestimo(self): #verificar
+        dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
+        emprestimo_existe = self.retornaEmprestimo(dados_emprestimo['tituloLivro'], 'emprestimo')
+        if emprestimo_existe:
+            index = self.__emprestimo.index(emprestimo_existe)
+            self.__emprestimo[index].livro = dados_emprestimo["tituloLivro"]
+            self.__emprestimo[index].usuario = dados_emprestimo["nomeUsuario"]
+            self.__emprestimo[index].dataEmprestimo = dados_emprestimo['dataFinal']
+            print('Empréstimo alterado!')
+        else:
+            print("Esse empréstimo ainda não foi criado.")
 
-    continua = True
-    while continua:
-      lista_opcoes[self.__tela_emprestimo.tela_opcoes()]()
+    def retornaEmprestimo(self, livro): #ta certo?
+        for emprestimo in self.__emprestimos:
+                if emprestimo.livro == livro:
+                    return emprestimo
+
+    def exclui_emprestimo(self):
+        if isinstance(emprestimo, Emprestimo):
+            emprestimo_incluso = False
+            for i in self.__emprestimos:
+                if i.livro == emprestimo.livro:
+                    self.__emprestimos.remove(i)
+                    emprestimo_incluso = True
+            if not emprestimo_incluso:
+                print('O empréstimo não estava incluso')
+        else:
+            print('Empréstimo inválido.')
+
+
+    def abre_tela(self):
+        #Atenção: código incompleto: adicionar funcões para todas as opções da tela
+        lista_opcoes = {1: self.inclui_emprestimo, 2: self.altera_emprestimo ,3: self.lista_emprestimos, 4: self.excluir_emprestimo, 5: self.verifica_emprestimo}
+
+        continua = True
+        while continua:
+            lista_opcoes[self.__tela_emprestimo.tela_opcoes()]()
+
 
