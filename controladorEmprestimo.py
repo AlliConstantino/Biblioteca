@@ -9,7 +9,6 @@ from dataEmprestimo import DataEmprestimo
 import datetime
 
 
-
 class ControladorEmprestimo():
 
     def __init__(self, controlador_sistema):
@@ -22,13 +21,6 @@ class ControladorEmprestimo():
         self.__data_emprestimo = DataEmprestimo()
         self.__controlador_sistema = controlador_sistema
 
-"""
-  a classe DataEmprestimo deve receber uma data no init, 
-  sendo essa a data atual (datetime.datetime.now())
-  e irá definitir:
-  self.__dataInicial = dataAtual
-  self.__dataFinal = dataAtual + datetime.timedelta(days=7)
-"""
     def inclui_emprestimo(self):
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
         livro = self.__controlador_livro.retornaLivro(dados_emprestimo["tituloLivro"])
@@ -57,7 +49,7 @@ class ControladorEmprestimo():
         for emprestimo in self.__emprestimos:
             self.__tela_emprestimo.mostra_emprestimo({"tituloLivro": emprestimo.livro.titulo, "nomeUsuario": emprestimo.usuario.nome,
             "dataInicial": emprestimo.dataEmprestimo.dataIncial, "dataFinal": emprestimo.dataEmprestimo.dataFinal,
-            "status": verifica_status(emprestimo)})
+            "status": self.verifica_status(emprestimo)})
 
     def altera_emprestimo(self): #verificar
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
@@ -91,10 +83,19 @@ class ControladorEmprestimo():
 
     def abre_tela(self):
         #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-        lista_opcoes = {1: self.inclui_emprestimo, 2: self.altera_emprestimo ,3: self.lista_emprestimos, 4: self.excluir_emprestimo, 5: self.verifica_emprestimo}
+        lista_opcoes = {1: self.inclui_emprestimo, 2: self.altera_emprestimo ,3: self.lista_emprestimos, 4: self.excluir_emprestimo,
+                        5: self.verifica_emprestimo}
 
         continua = True
         while continua:
             lista_opcoes[self.__telaEmprestimo.tela_opcoes()]()
+
+            """
+              a classe DataEmprestimo deve receber uma data no init, 
+              sendo essa a data atual (datetime.datetime.now())
+              e irá definitir:
+              self.__dataInicial = dataAtual
+              self.__dataFinal = dataAtual + datetime.timedelta(days=7)
+            """
 
 
