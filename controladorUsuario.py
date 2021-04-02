@@ -1,4 +1,5 @@
 import email
+
 import aluno
 import professor
 import usuario
@@ -50,7 +51,6 @@ class ControladorUsuario():
         return False
 
 
-
     def altera_aluno(self):
         dados_aluno = self.__telaUsuario.pega_dados_aluno()
         aluno_existe = self.retornaUsuario(dados_aluno['Nome'], 'aluno')
@@ -60,7 +60,7 @@ class ControladorUsuario():
             self.__alunos[index].telefone = dados_aluno["Telefone"]
             self.__alunos[index].email = dados_aluno['Email']
             self.__alunos[index].data_nascimento = dados_aluno['Data de nascimento']
-            self.__alunos[index].ano_atual = dados_aluno['Ano atual'])
+            self.__alunos[index].ano_atual = dados_aluno['Ano atual']
 
             print("Aluno alterado com sucesso.")
         else:
@@ -108,10 +108,26 @@ class ControladorUsuario():
         else:
             print('professor inválido')
 
+    def altera_professor(self):
+        dados_professor = self.__telaUsuario.pega_dados_professor()
+        professor_existe = self.retornaUsuario(dados_aluno['Nome'], 'professor')
+        if professor_existe:
+            index = self.__professores.index(professor_existe)
+            self.__professores[index].nome = dados_professor["Nome"]
+            self.__professores[index].telefone = dados_professor["Telefone"]
+            self.__professores[index].email = dados_professor['Email']
+            self.__professores[index].data_nascimento = dados_professor['Data de nascimento']
+            self.__professores[index].ano_atual = dados_professor['Ano atual']
+
+            print("Professor alterado com sucesso.")
+        else:
+            print("Esse professor não existe!")
+
     def abre_tela(self):
         # Atenção: código incompleto: adicionar funcões para todas as opções da tela
-        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.lista_alunos, 4: self.excluir_aluno}
+        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.lista_alunos, 4: self.excluir_aluno, 5: self.incluir_professor(), 6: self.altera_professor(),
+                        7: self.lista_professores(), 8: self.exclui_professor()}
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_alunos.tela_opcoes()]()  # não entendi essa parte
+            lista_opcoes[self.__telaUsuario.tela_opcoes()]()  # não entendi essa parte
