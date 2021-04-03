@@ -134,4 +134,4 @@ class ControladorUsuario():
 
         continua = True
         while continua:
-            lista_opcoes[self.__telaUsuario.tela_opcoes()]()  # não entendi essa parte
+            lista_opcoes[self.__telaUsuario.tela_opcoes()]()

@@ -1,29 +1,28 @@
-from editora import Editora
+#from editora import Editora
 from autor import Autor
 from capitulo import Capitulo
 from livro import Livro
 from usuario import Usuario
 from aluno import Aluno
 from professor import Professor
-from ctrlLivros import CtrlLivros
+from ctrlLivro import CtrlLivro
 from controladorUsuario import ControladorUsuario
 from controladorEmprestimo import ControladorEmprestimo
 from telaBiblioteca import TelaBiblioteca
 
-class CtrlBiblioteca:
+class CtrlBiblioteca():
   def __init__(self):
-    super().__init__(codigo,titulo,ano,editora,autor)
-    self.__ctrlLivros = ctrlLivros(self)
-    self.__controladorUsuario = controladorUsuario(self)
-    self.__controladorEmprestimo = controladorEmprestimo(self)
-    self.__telaBiblioteca = telaBistema()
+    #super().__init__(codigo,titulo,ano,editora,autor)
+    self.__ctrlLivros = CtrlLivro(self)
+    self.__controladorUsuario = ControladorUsuario(self)
+    self.__controladorEmprestimo = ControladorEmprestimo(self)
+    self.__telaBiblioteca = TelaBiblioteca()
   
   #troquei o nome pra startSystem p n ficar taaaao obvio
-  def startSystem(self):
-    self.abre_tela()
-  
-  
-   def incluirLivro(self, livro: Livro):
+    def startSystem(self):
+        self.abre_tela()
+
+    def inclui_livro(self, livro: Livro):
         if isinstance(livro, Livro):
             livro_incluso = False
             for i in self.__livros:
@@ -36,7 +35,7 @@ class CtrlBiblioteca:
         else:
             print('Livro invalido.')
 
-    def excluirLivro(self, livro: Livro):
+    def exclui_livro(self, livro: Livro):
         if isinstance(livro, Livro):
             livro_incluso = False
             for i in self.__livros:
@@ -55,4 +54,7 @@ class CtrlBiblioteca:
   def cadastra_emprestimos(self):
     pass
     # Chama o controlador de Emprestimos
+
+  def abre_tela(self):
+      pass
   
