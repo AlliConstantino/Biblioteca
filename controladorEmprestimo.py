@@ -51,28 +51,27 @@ class ControladorEmprestimo():
             "dataInicial": emprestimo.dataEmprestimo.dataIncial, "dataFinal": emprestimo.dataEmprestimo.dataFinal,
             "status": self.verifica_status(emprestimo)})
 
-    def altera_emprestimo(self): #verificar
+    def renova_emprestimo(self):
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
-        emprestimo_existe = self.retornaEmprestimo(dados_emprestimo['tituloLivro'], 'emprestimo')
+        emprestimo_existe = self.retornaEmprestimo(dados_emprestimo['tituloLivro'])
         if emprestimo_existe:
             index = self.__emprestimo.index(emprestimo_existe)
-            self.__emprestimo[index].livro = dados_emprestimo["tituloLivro"]
-            self.__emprestimo[index].usuario = dados_emprestimo["nomeUsuario"]
-            self.__emprestimo[index].dataEmprestimo = dados_emprestimo['dataFinal']
-            print('Empréstimo alterado!')
+            self.__emprestimo[index].dataEmprestimo = self.__emprestimo[index].dataEmprestimo + datetime.timedelta(days=7)
+            print('Empréstimo renovado para mais 7 dias!')
         else:
             print("Esse empréstimo ainda não foi criado.")
 
-    def retornaEmprestimo(self, livro): #ta certo?
+    def retornaEmprestimo(self, tituloLivro):
         for emprestimo in self.__emprestimos:
-                if emprestimo.livro == livro:
+                if emprestimo.livro.titulo == tituloLivro:
                     return emprestimo
+        return False
 
     def exclui_emprestimo(self):
         if isinstance(emprestimo, Emprestimo):
             emprestimo_incluso = False
             for i in self.__emprestimos:
-                if i.livro == emprestimo.livro:
+                if i.livro == emprestimo.livro.titulo:
                     self.__emprestimos.remove(i)
                     emprestimo_incluso = True
             if not emprestimo_incluso:
@@ -83,7 +82,7 @@ class ControladorEmprestimo():
 
     def abre_tela(self):
         #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-        lista_opcoes = {1: self.inclui_emprestimo, 2: self.altera_emprestimo ,3: self.lista_emprestimos, 4: self.excluir_emprestimo,
+        lista_opcoes = {1: self.inclui_emprestimo, 2: self.renova_emprestimo ,3: self.lista_emprestimos, 4: self.exclui_emprestimo,
                         5: self.verifica_emprestimo}
 
         continua = True
