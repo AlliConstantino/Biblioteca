@@ -1,6 +1,6 @@
 class Editora:
   #inicio
-  def __init__(self, codigo: int, nome: str):
+    def __init__(self, codigo: int, nome: str):
         self.__codigo = codigo
         self.__nome = nome
 
