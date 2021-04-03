@@ -3,7 +3,7 @@ import email
 import aluno
 import professor
 import usuario
-from ctrlBiblioteca import CtrlBiblioteca
+#from ctrlBiblioteca import CtrlBiblioteca
 from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
@@ -12,14 +12,12 @@ from professor import Professor
 class ControladorUsuario():
 
     def __init__(self):
-        # super().__init__(nome, telefone, email, data_nascimento, ano_atual)
         self.__alunos = []
         self.__professores = []
 
         self.__telaUsuario = TelaUsuario()
-        self.__ctrlBiblioteca = CtrlBiblioteca()
+        #self.__ctrlBiblioteca = CtrlBiblioteca()
 
-    # Nao esquecer de lidar com as excecoes
 
     # Aluno
     def incluir_aluno(self):
@@ -128,7 +126,6 @@ class ControladorUsuario():
             print("Esse professor não existe!")
 
     def abre_tela(self):
-        # Atenção: código incompleto: adicionar funcões para todas as opções da tela
         lista_opcoes = {0: self.__ctrlBiblioteca.abre_tela(), 1: self.incluir_aluno, 2: self.altera_aluno, 3: self.lista_alunos, 4: self.exclui_aluno, 5: self.incluir_professor(), 6: self.altera_professor(),
                         7: self.lista_professores(), 8: self.exclui_professor()}
 

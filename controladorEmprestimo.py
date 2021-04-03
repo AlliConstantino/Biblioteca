@@ -1,4 +1,5 @@
 import emprestimo
+#from ctrlBiblioteca import CtrlBiblioteca
 from ctrlLivro import CtrlLivro
 from controladorUsuario import ControladorUsuario
 from telaEmprestimo import TelaEmprestimo
@@ -11,7 +12,7 @@ import datetime
 
 class ControladorEmprestimo():
 
-    def __init__(self, controlador_sistema):
+    def __init__(self):
 
         self.__emprestimos = []
 
@@ -19,7 +20,7 @@ class ControladorEmprestimo():
         self.__controlador_livro = CtrlLivro()
         self.__controlador_usuario = ControladorUsuario()
         self.__data_emprestimo = DataEmprestimo()
-        self.__controlador_sistema = controlador_sistema
+        #self.__ctrlBiblioteca = CtrlBiblioteca()
 
     def inclui_emprestimo(self):
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()

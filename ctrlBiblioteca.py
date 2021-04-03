@@ -1,4 +1,5 @@
 #from editora import Editora
+import livro
 from autor import Autor
 from capitulo import Capitulo
 from livro import Livro
@@ -13,16 +14,16 @@ from telaBiblioteca import TelaBiblioteca
 class CtrlBiblioteca():
   def __init__(self):
     #super().__init__(codigo,titulo,ano,editora,autor)
-    self.__ctrlLivros = CtrlLivro(self)
-    self.__controladorUsuario = ControladorUsuario(self)
-    self.__controladorEmprestimo = ControladorEmprestimo(self)
+    self.__ctrlLivros = CtrlLivro()
+    self.__controladorUsuario = ControladorUsuario()
+    self.__controladorEmprestimo = ControladorEmprestimo()
     self.__telaBiblioteca = TelaBiblioteca()
   
   #troquei o nome pra startSystem p n ficar taaaao obvio
-    def startSystem(self):
+    def startSystem():
         self.abre_tela()
 
-    def inclui_livro(self, livro: Livro):
+    def inclui_livro(self):
         if isinstance(livro, Livro):
             livro_incluso = False
             for i in self.__livros:
@@ -47,7 +48,7 @@ class CtrlBiblioteca():
         else:
             print('Livro invalido.')
   
-  def cadastraAmigos(self):
+  def cadastraAmigos(self): #amigo?
     # Chama o controlador de Usuarios
     self.__controladorUsuario.abre_tela()
 
