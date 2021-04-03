@@ -3,6 +3,7 @@ import email
 import aluno
 import professor
 import usuario
+from ctrlBiblioteca import CtrlBiblioteca
 from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
@@ -10,25 +11,26 @@ from professor import Professor
 
 class ControladorUsuario():
 
-    def __init__(self, ctrlBiblioteca):
+    def __init__(self):
         # super().__init__(nome, telefone, email, data_nascimento, ano_atual)
         self.__alunos = []
         self.__professores = []
 
         self.__telaUsuario = TelaUsuario()
-        self.__ctrlBiblioteca = ctrlBiblioteca
+        self.__ctrlBiblioteca = CtrlBiblioteca()
 
     # Nao esquecer de lidar com as excecoes
 
     # Aluno
     def incluir_aluno(self):
-        dados_aluno = self.__telaUsuario.pega_dados_aluno()
-        aluno_existe = self.retornaUsuario(dados_aluno['Nome'], 'aluno')
+        nome_aluno = self.__telaUsuario.pega_nome('Aluno')
+        aluno_existe = self.retornaUsuario(nome_aluno['Nome'], 'aluno')
 
         if aluno_existe:
             print('Esse aluno já existe.')
         else:
-            aluno = Aluno(dados_aluno["Nome"], dados_aluno["Telefone"], dados_aluno['Email'],
+            dados_aluno = self.__telaUsuario.pega_dados_usuario()
+            aluno = Aluno(nome_aluno["Nome"], dados_aluno["Telefone"], dados_aluno['Email'],
                           dados_aluno['Data de nascimento'],
                           dados_aluno['Ano atual'])
             self.__alunos.append(aluno)
@@ -36,8 +38,8 @@ class ControladorUsuario():
 
     def lista_alunos(self):
         for aluno in self.__alunos:
-            self.__telaUsuario.mostra_aluno({"Nome": aluno.nome, "Telefone": aluno.telefone, 'Email': aluno.email,
-                                             'Data de nascimento': aluno.data_nascimento, 'Ano atual': aluno.ano_atual})
+            self.__telaUsuario.mostra_usuario({"Nome": aluno.nome, "Telefone": aluno.telefone, 'Email': aluno.email,
+                                             'Data de nascimento': aluno.data_nascimento, 'Ano atual': aluno.ano_atual}, 'Aluno')
 
     def retornaUsuario(self, nome, tipo = 'ambos'):
         if tipo != 'professor':
@@ -52,11 +54,13 @@ class ControladorUsuario():
 
 
     def altera_aluno(self):
-        dados_aluno = self.__telaUsuario.pega_dados_aluno()
-        aluno_existe = self.retornaUsuario(dados_aluno['Nome'], 'aluno')
+        nome_aluno = self.__telaUsuario.pega_nome('Aluno')
+        aluno_existe = self.retornaUsuario(nome_aluno['Nome'], 'aluno')
+
         if aluno_existe:
+            dados_aluno = self.__telaUsuario.pega_dados_usuario()
             index = self.__alunos.index(aluno_existe)
-            self.__alunos[index].nome = dados_aluno["Nome"]
+            self.__alunos[index].nome = nome_aluno["Nome"]
             self.__alunos[index].telefone = dados_aluno["Telefone"]
             self.__alunos[index].email = dados_aluno['Email']
             self.__alunos[index].data_nascimento = dados_aluno['Data de nascimento']
@@ -82,7 +86,7 @@ class ControladorUsuario():
 
     # Professor
     def incluir_professor(self):
-        dados_professor = self.__telaUsuario.pega_dados_professor()
+        dados_professor = self.__telaUsuario.pega_dados_usuario()  #deixar que nem incluir aluno
 
         professor = Professor(dados_professor["Nome"], dados_professor["Telefone"], dados_professor['Email'],
                               dados_professor['Data de nascimento'],
@@ -92,11 +96,11 @@ class ControladorUsuario():
 
     def lista_professores(self):
         for professor in self.__professores:
-            self.__telaUsuario.mostra_professor(
+            self.__telaUsuario.mostra_usuario(
                 {"Nome": professor.nome, "Telefone": professor.telefone, 'Email': professor.email,
-                 'Data de nascimento': professor.data_nascimento, 'Ano atual': professor.ano_atual})
+                 'Data de nascimento': professor.data_nascimento, 'Ano atual': professor.ano_atual}, 'Professor')
 
-    def exclui_professor(self):
+    def exclui_professor(self): ##deixar que nem incluir aluno
         if isinstance(professor, Professor):
             professor_incluso = False
             for i in self.__professores:
@@ -108,9 +112,9 @@ class ControladorUsuario():
         else:
             print('professor inválido')
 
-    def altera_professor(self):
-        dados_professor = self.__telaUsuario.pega_dados_professor()
-        professor_existe = self.retornaUsuario(dados_aluno['Nome'], 'professor')
+    def altera_professor(self): ##deixar que nem incluir aluno
+        dados_professor = self.__telaUsuario.pega_dados_usuario()
+        professor_existe = self.retornaUsuario(dados_professor['Nome'], 'professor')
         if professor_existe:
             index = self.__professores.index(professor_existe)
             self.__professores[index].nome = dados_professor["Nome"]
@@ -125,7 +129,7 @@ class ControladorUsuario():
 
     def abre_tela(self):
         # Atenção: código incompleto: adicionar funcões para todas as opções da tela
-        lista_opcoes = {1: self.incluir_aluno, 2: self.alterar_aluno, 3: self.lista_alunos, 4: self.excluir_aluno, 5: self.incluir_professor(), 6: self.altera_professor(),
+        lista_opcoes = {0: self.__ctrlBiblioteca.abre_tela(), 1: self.incluir_aluno, 2: self.altera_aluno, 3: self.lista_alunos, 4: self.exclui_aluno, 5: self.incluir_professor(), 6: self.altera_professor(),
                         7: self.lista_professores(), 8: self.exclui_professor()}
 
         continua = True
