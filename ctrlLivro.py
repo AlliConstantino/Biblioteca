@@ -13,6 +13,51 @@ class CtrlLivro:
             return livro
     return False  
   
+  
+  @codigo.setter
+    def codigo(self, codigo):
+        self.__codigo = codigo
+        
+    @titulo.setter
+    def titulo(self, titulo):
+        self.__titulo = titulo
+        
+    @ano.setter
+    def ano(self, ano):
+        self.__ano = ano
+        
+        
+   @editora.setter
+    def editora(self, editora):
+        self.__editora = editora
+        
+        
+        
+  def incluirAutor(self, autor: Autor):
+        if isinstance(autor, Autor):
+            autor_incluso = False
+            for i in self.__autores:
+                if i.codigo == autor.codigo:
+                    autor_incluso = True
+            if not autor_incluso:
+                self.__autores.append(autor)
+            else:
+                print('O autor ja estava incluso.')
+        else:
+            print('Autor invalido.')
+
+    def excluirAutor(self, autor: Autor):
+        if isinstance(autor, Autor):
+            autor_incluso = False
+            for i in self.__autores:
+                if i.codigo == autor.codigo:
+                    self.__autores.remove(i)
+                    autor_incluso = True
+            if not autor_incluso:
+                print('O autor nao estava incluso.')
+        else:
+            print('Autor invalido.')      
+  
   def editaLivro(self,titulo,autor,genero,capitulo):
     #metodo para editar o livro
     return False
