@@ -55,7 +55,8 @@ class CtrlBiblioteca():
   def cadastra_emprestimos(self):
     pass
     # Chama o controlador de Emprestimos
+    self.__controladorEmprestimo.inclui_emprestimo()
 
   def abre_tela(self):
-      pass
+    self.__telaBiblioteca.tela_opcoes()
   
