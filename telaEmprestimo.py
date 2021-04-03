@@ -25,6 +25,6 @@ class TelaEmprestimo():
   def mostra_emprestimo(self, dados_emprestimo):
     print('O livro emprestado é: %s' %(dados_emprestimo["tituloLivro"]))
     print('Quem emprestou foi: %s' %(dados_emprestimo["nomeUsuario"]))
-    print('A data do emprestimo é: %d' %(dados_emprestimo["dataInicial"])) #verificar isso
-    print('A data de fim do emprestimo é: %d' %(dados_emprestimo["dataFinal"]))
+    print('A data do emprestimo é: %x' %(dados_emprestimo["dataInicial"])) #verificar isso
+    print('A data de fim do emprestimo é: %x' %(dados_emprestimo["dataFinal"]))
     print('E a o status do emprestimo é: %s' %(dados_emprestimo["status"]))
