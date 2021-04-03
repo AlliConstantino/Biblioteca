@@ -1,14 +1,8 @@
-#importacao do Livro
-from livro import Livro
-#importacao do ctrlLivro
-from ctrlLivro import CtrlLivro
-
 class Capitulo:
   #init
   def __init__(self, numeroCap: int, nomeCap: str):
         self.__numeroCap = numeroCap
         self.__nomeCap = nomeCap
-
   #getter numeroCap
   @property
   def mostraNumeroCap(self):

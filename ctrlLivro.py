@@ -4,7 +4,7 @@ from telaLivro import TelaLivro
 
 class CtrlLivro:
   def __init__(self):
-    self.__telaLivro = telaLivro()
+    self.__telaLivro = TelaLivro()
     self.__livro = Livro
     
   def retornaLivro(self, titulo):
@@ -13,7 +13,7 @@ class CtrlLivro:
             return livro
     return False  
   
-  
+
   @codigo.setter
     def codigo(self, codigo):
         self.__codigo = codigo
