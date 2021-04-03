@@ -18,13 +18,13 @@ class CtrlLivro:
     def codigo(self, codigo):
         self.__codigo = codigo
         
-    @titulo.setter
+@titulo.setter
     def titulo(self, titulo):
         self.__titulo = titulo
         
-    @ano.setter
-    def ano(self, ano):
-        self.__ano = ano
+  @ano.setter
+  def ano(self, ano):
+    self.__ano = ano
         
         
    @editora.setter
