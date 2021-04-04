@@ -5,17 +5,18 @@ from ctrlBiblioteca import CtrlBiblioteca
 
 class TelaLivro:
   
+  #mostra o livro
   def mostraLivro(self,titulo,capitulo,autor):
-    #pegar o metodo mostra Livro do ctrlBiblioteca
+    
     return self.ctrlLivro.retornaLivro(titulo)
   
   #exclui livro
   def excluirLivro(self,titulo,capitulo,autor):
     #pegar o metodo excluir Livro do ctrlBiblioteca
-    return self.ctrlLivro.excluiLivro(titulo)
+    return self.ctrBiblioteca.exclui_livro()
   
   def incluiLivro(self,titulo,capitulo,autor):
-    return self.ctrlLivro.adicionaLivro
+    return self.ctrlBiblioteca.inclui_livro(self)
   
   #mostra nome do livro
   def telaOpcoes(self):
