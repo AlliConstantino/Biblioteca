@@ -9,6 +9,7 @@ class Livro:
             self,
             codigo: int,
             titulo: str,
+            status: str,
             ano: int,
             editora: Editora,
             autor: Autor,
@@ -20,6 +21,7 @@ class Livro:
         self.__editora = editora
         self.__autores = [autor]
         self.__capitulos = [Capitulo(numeroCapitulo, tituloCapitulo)]
+        self.__status = status
 
     @property
     def codigo(self):
@@ -40,6 +42,14 @@ class Livro:
     @property
     def ano(self):
         return self.__ano
+    
+    @property
+    def status(self):
+        return self.status
+    
+    @status.setter
+    def status(self,status):
+        self.__status = status
 
     @ano.setter
     def ano(self, ano):
