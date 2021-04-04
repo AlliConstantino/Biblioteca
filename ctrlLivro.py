@@ -13,8 +13,6 @@ class CtrlLivro:
               return livro
       return False
 
-
-
   def incluirAutor(self, autor: Autor):
       if isinstance(autor, Autor):
           autor_incluso = False
@@ -53,7 +51,7 @@ class CtrlLivro:
       # Pega o input e percorre o array dos livros emprestados,comparando se o livro buscado está la
       for i in self.__livro:
         if self.livro.status() == "emprestado":
-          print ("livro já foi emprestado)
+          print ("livro já foi emprestado")
         else:
           print("livro disponivel")       
       # Se estiver retorna uma msg dizendo que o livro esta emprestado e portanto nao esta disponivel

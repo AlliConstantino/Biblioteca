@@ -108,17 +108,16 @@ class ControladorUsuario():
                  'Data de nascimento': professor.data_nascimento, 'Ano atual': professor.ano_atual}, 'Professor')
 
     def exclui_professor(self):
-        if isinstance(professor, Professor):
-            professor_incluso = False
-            for i in self.__professores:
-                if i.nome == professor.nome:
-                    self.__professores.remove(i)
-                    professor_incluso = True
-            if not professor_incluso:
-                print('O professor não estava incluso')
-        else:
-            print('Professor inválido')
+        print('Insira o nome do professor que gostaria de excluir.')
+        nome_professor = self.__telaUsuario.pega_nome('Professor')
+        professor_existe = self.retornaUsuario(nome_professor['Nome'], 'professor')
 
+        if professor_existe:
+            self.__professor.remove(professor_existe)
+
+            print("Professor exluído com sucesso.")
+        else:
+            print("Esse professor não existe!")
 
     def altera_professor(self):
         nome_professor = self.__telaUsuario.pega_nome('Professor')
