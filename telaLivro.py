@@ -7,12 +7,15 @@ class TelaLivro:
   
   def mostraLivro(self,titulo,capitulo,autor):
     #pegar o metodo mostra Livro do ctrlBiblioteca
-    return False
+    return self.ctrlLivro.retornaLivro(titulo)
   
   #exclui livro
   def excluirLivro(self,titulo,capitulo,autor):
     #pegar o metodo excluir Livro do ctrlBiblioteca
-    return False
+    return self.ctrlLivro.excluiLivro(titulo)
+  
+  def incluiLivro(self,titulo,capitulo,autor):
+    return self.ctrlLivro.adicionaLivro
   
   #mostra nome do livro
   def telaOpcoes(self):
@@ -24,5 +27,5 @@ class TelaLivro:
 
         opcao = int(input("Escolha a opcao: "))
         return opcao
-  #
+  
   
