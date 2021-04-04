@@ -10,7 +10,7 @@ class TelaEmprestimo():
     print("3 - Relatório de Emprestimos")
     print("4 - Excluir Emprestimo")
     print("5 - Verificar status Emprestimo")
-    print("0 - Retornar") #como aplicar isso?
+    print("0 - Retornar")
 
     opcao = int(input("Escolha a opcao: "))
     return opcao

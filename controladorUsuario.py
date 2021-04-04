@@ -151,10 +151,13 @@ class ControladorUsuario():
                 self.exclui_aluno()
             elif opcao == 5:
                 self.incluir_professor()
+            elif opcao == 6:
+                self.altera_professor()
+            elif opcao == 7:
+                self.lista_professores()
+            elif opcao == 8:
+                self.exclui_professor()
             elif opcao == 0:
                 self.__ctrlBiblioteca.abre_tela()
                 break
 
-        # continua = True
-        # while continua:
-        #      lista_opcoes[self.__telaUsuario.tela_opcoes()]()

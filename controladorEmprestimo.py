@@ -1,5 +1,4 @@
 import emprestimo
-#from ctrlBiblioteca import CtrlBiblioteca
 from ctrlLivro import CtrlLivro
 from controladorUsuario import ControladorUsuario
 from telaEmprestimo import TelaEmprestimo
@@ -37,7 +36,6 @@ class ControladorEmprestimo():
         else:
             print('Livro e usuário inexistentes, emprestimo não efetuado')
 
-# Pensar em atribuir datetime.timedelta(days=7) como atributo "tempoLimite" na classe DataEmprestimo
 # verifica_Status ainda precisa de alguns ajustes
     def verifica_status(self, emprestimo):
         tempoEmEmprestimo = (datetime.datetime.now() - emprestimo.dataEmprestimo.dataInicial)
@@ -82,20 +80,20 @@ class ControladorEmprestimo():
 
 
     def abre_tela(self):
-        #Atenção: código incompleto: adicionar funcões para todas as opções da tela
-        lista_opcoes = {1: self.inclui_emprestimo, 2: self.renova_emprestimo ,3: self.lista_emprestimos, 4: self.exclui_emprestimo,
-                        5: self.verifica_emprestimo}
-
-        continua = True
-        while continua:
-            lista_opcoes[self.__telaEmprestimo.tela_opcoes()]()
-
-            """
-              a classe DataEmprestimo deve receber uma data no init, 
-              sendo essa a data atual (datetime.datetime.now())
-              e irá definitir:
-              self.__dataInicial = dataAtual
-              self.__dataFinal = dataAtual + datetime.timedelta(days=7)
-            """
-
-
+        from ctrlBiblioteca import CtrlBiblioteca
+        self.__ctrlBiblioteca = CtrlBiblioteca()
+        while True:
+            opcao = self.__tela_emprestimo.tela_opcoes()
+            if opcao == 1:
+                self.inclui_emprestimo()
+            elif opcao == 2:
+                self.renova_emprestimo()
+            elif opcao == 3:
+                self.lista_emprestimos()
+            elif opcao == 4:
+                self.exclui_emprestimo()
+            elif opcao == 5:
+                self.verifica_status()
+            elif opcao == 0:
+                self.__ctrlBiblioteca.abre_tela()
+                break
