@@ -45,6 +45,10 @@ class CtrlLivro:
       # Metodo para checar se livro esta emprestado ou nao
 
       #tá certo sera?
+      
+  def abre_tela(self):
+    return False
+  
   def checaStatus(self, livro):
       # Pergunta pro usuario qual livro ele quer checar
       livroAChecar = input("Qual livro você quer checar se esta disponivel?")
