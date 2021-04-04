@@ -25,22 +25,33 @@ class Livro:
     def codigo(self):
         return self.__codigo
 
+    @codigo.setter
+    def codigo(self, codigo):
+        self.__codigo = codigo
+
     @property
     def titulo(self):
         return self.__titulo
 
+    @titulo.setter
+    def titulo(self, titulo):
+        self.__titulo = titulo
 
     @property
     def ano(self):
         return self.__ano
 
+    @ano.setter
+    def ano(self, ano):
+        self.__ano = ano
+
     @property
     def editora(self):
         return self.__editora
 
-    @property
-    def autores(self):
-        return self.__autores
+    @editora.setter
+    def editora(self, editora):
+        self.__editora = editora
 
      
     

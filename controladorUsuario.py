@@ -3,7 +3,7 @@ import email
 import aluno
 import professor
 import usuario
-#from ctrlBiblioteca import CtrlBiblioteca
+from telaBiblioteca import TelaBiblioteca
 from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
@@ -16,7 +16,7 @@ class ControladorUsuario():
         self.__professores = []
 
         self.__telaUsuario = TelaUsuario()
-        #self.__ctrlBiblioteca = CtrlBiblioteca()
+        self.__telaBiblioteca = TelaBiblioteca()
 
 
     # Aluno
@@ -35,9 +35,12 @@ class ControladorUsuario():
             print("Aluno adicionado com sucesso!")
 
     def lista_alunos(self):
-        for aluno in self.__alunos:
-            self.__telaUsuario.mostra_usuario({"Nome": aluno.nome, "Telefone": aluno.telefone, 'Email': aluno.email,
+        if len(self.__alunos) > 0:
+            for aluno in self.__alunos:
+                self.__telaUsuario.mostra_usuario({"Nome": aluno.nome, "Telefone": aluno.telefone, 'Email': aluno.email,
                                              'Data de nascimento': aluno.data_nascimento, 'Ano atual': aluno.ano_atual}, 'Aluno')
+        else:
+            print('Nenhum aluno cadastrado.')
 
     def retornaUsuario(self, nome, tipo = 'ambos'):
         if tipo != 'professor':
@@ -52,6 +55,7 @@ class ControladorUsuario():
 
 
     def altera_aluno(self):
+        print('Insira o nome do aluno que gostaria de alterar.')
         nome_aluno = self.__telaUsuario.pega_nome('Aluno')
         aluno_existe = self.retornaUsuario(nome_aluno['Nome'], 'aluno')
 
@@ -70,27 +74,32 @@ class ControladorUsuario():
 
 
     def exclui_aluno(self):
-        if isinstance(aluno, Aluno):
-            aluno_incluso = False
-            for i in self.__alunos:
-                if i.nome == aluno.nome:
-                    self.__alunos.remove(i)
-                    aluno_incluso = True
-            if not aluno_incluso:
-                print('O aluno não estava incluso')
-        else:
-            print('Aluno inválido')
+        print('Insira o nome do aluno que gostaria de excluir.')
+        nome_aluno = self.__telaUsuario.pega_nome('Aluno')
+        aluno_existe = self.retornaUsuario(nome_aluno['Nome'], 'aluno')
 
+        if aluno_existe:
+            self.__alunos.remove(aluno_existe)
+
+            print("Aluno exluído com sucesso.")
+        else:
+            print("Esse aluno não existe!")
 
     # Professor
     def incluir_professor(self):
-        dados_professor = self.__telaUsuario.pega_dados_usuario()  #deixar que nem incluir aluno
+        nome_professor = self.__telaUsuario.pega_nome('Professor')
+        professor_existe = self.retornaUsuario(nome_professor['Nome'], 'professor')
 
-        professor = Professor(dados_professor["Nome"], dados_professor["Telefone"], dados_professor['Email'],
+        if professor_existe:
+            print('Esse professor já existe.')
+        else:
+            dados_professor = self.__telaUsuario.pega_dados_usuario()
+            professor = Professor(dados_professor["Nome"], dados_professor["Telefone"], dados_professor['Email'],
                               dados_professor['Data de nascimento'],
                               dados_professor['Ano atual'])
 
-        self.__professores.append(professor)
+            self.__professores.append(professor)
+            print("Professor adicionado com sucesso!")
 
     def lista_professores(self):
         for professor in self.__professores:
@@ -98,7 +107,7 @@ class ControladorUsuario():
                 {"Nome": professor.nome, "Telefone": professor.telefone, 'Email': professor.email,
                  'Data de nascimento': professor.data_nascimento, 'Ano atual': professor.ano_atual}, 'Professor')
 
-    def exclui_professor(self): ##deixar que nem incluir aluno
+    def exclui_professor(self):
         if isinstance(professor, Professor):
             professor_incluso = False
             for i in self.__professores:
@@ -108,12 +117,14 @@ class ControladorUsuario():
             if not professor_incluso:
                 print('O professor não estava incluso')
         else:
-            print('professor inválido')
+            print('Professor inválido')
 
-    def altera_professor(self): ##deixar que nem incluir aluno
-        dados_professor = self.__telaUsuario.pega_dados_usuario()
-        professor_existe = self.retornaUsuario(dados_professor['Nome'], 'professor')
+
+    def altera_professor(self):
+        nome_professor = self.__telaUsuario.pega_nome('Professor')
+        professor_existe = self.retornaUsuario(nome_professor['Nome'], 'professor')
         if professor_existe:
+            dados_professor = self.__telaUsuario.pega_dados_usuario()
             index = self.__professores.index(professor_existe)
             self.__professores[index].nome = dados_professor["Nome"]
             self.__professores[index].telefone = dados_professor["Telefone"]
@@ -125,10 +136,26 @@ class ControladorUsuario():
         else:
             print("Esse professor não existe!")
 
-    def abre_tela(self):
-        lista_opcoes = {0: self.__ctrlBiblioteca.abre_tela(), 1: self.incluir_aluno, 2: self.altera_aluno, 3: self.lista_alunos, 4: self.exclui_aluno, 5: self.incluir_professor(), 6: self.altera_professor(),
-                        7: self.lista_professores(), 8: self.exclui_professor()}
 
-        continua = True
-        while continua:
-            lista_opcoes[self.__telaUsuario.tela_opcoes()]()
+    def abre_tela(self):
+        from ctrlBiblioteca import CtrlBiblioteca
+        self.__ctrlBiblioteca = CtrlBiblioteca()
+        while True:
+            opcao = self.__telaUsuario.tela_opcoes()
+            if opcao == 1:
+                self.incluir_aluno()
+            elif opcao == 2:
+                self.altera_aluno()
+            elif opcao == 3:
+                self.lista_alunos()
+            elif opcao == 4:
+                self.exclui_aluno()
+            elif opcao == 5:
+                self.incluir_professor()
+            elif opcao == 0:
+                self.__ctrlBiblioteca.abre_tela()
+                break
+
+        # continua = True
+        # while continua:
+        #      lista_opcoes[self.__telaUsuario.tela_opcoes()]()

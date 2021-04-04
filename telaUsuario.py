@@ -21,25 +21,31 @@ class TelaUsuario():
     def pega_dados_usuario(self):
         telefone = input("Telefone: ")
         email = input("E-mail: ")
-        data_entrada = input("Data de Nacimento (no formato DD/MM/AA: ")
+        data_entrada = input("Data de Nacimento (no formato DD/MM/AAAA): ")
         dia, mes, ano = map(int, data_entrada.split('/'))
-        data_nascimento = datetime.date(dia, mes, ano)
-        ano_atual = input("Ano atual: ")
+        data_nascimento = datetime.date(ano, mes, dia)
+        ano_atual = int(input("Ano atual: "))
 
         return {"Telefone": telefone, 'Email': email,
                 'Data de nascimento': data_nascimento, 'Ano atual': ano_atual}
 
-        # nome ser str; telefone int; dtaa no formato solicitado, e-mail com @.
+        #telefone int; dtaa no formato solicitado
 
     def pega_nome(self, tipo: str):
-        usuario = tipo.upper()
-        print("-------- %s ---------" % usuario)
-        nome = input("Nome: ")
+        continua = True
+        while continua:
+            usuario = tipo.upper()
+            print("-------- %s ---------" % usuario)
+            nome = input("Nome: ")
+            continua = any(char.isdigit() for char in nome)
+            if continua:
+                print('Digite um nome válido')
+
         return {"Nome": nome}
 
     def mostra_usuario(self, dados_usuario, tipo):
-        print("NOME DO %s: %s" % (tipo, dados_usuario["Nome"]))
-        print("FONE DO %s: %s" % (tipo, dados_usuario["Telefone"]))
-        print("E-MAIL DO %s: %s" % (tipo, dados_usuario['Email']))
-        print("NASCIMENTO DO %s: %x" % (tipo, dados_usuario['Data de nascimento']))
-        print("ANO ATUAl: %d" % (dados_usuario['Ano atual']))
+        print("Nome do %s: %s" % (tipo, dados_usuario["Nome"]))
+        print("Fone do %s: %s" % (tipo, dados_usuario["Telefone"]))
+        print("E-mail do %s: %s" % (tipo, dados_usuario['Email']))
+        print('Nascimento do %s: ' % tipo + dados_usuario['Data de nascimento'].strftime("%d/%m/%Y"))
+        print("Ano atual: %d" % (dados_usuario['Ano atual']))

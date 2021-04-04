@@ -7,5 +7,5 @@ class TelaBiblioteca:
     print("2 - Usuários")
     print("3 - Emprestimos")
     print("0 - Finalizar sistema")
-    opcao = int(input("Escolha a opcao:"))
+    opcao = int(input("Escolha a opcao: "))
     return opcao

@@ -1,9 +1,10 @@
+from autor import Autor
 from livro import Livro
 from telaLivro import TelaLivro
 
 class CtrlLivro:
   def __init__(self):
-    self.__telaLivro = telaLivro()
+    self.__telaLivro = TelaLivro()
     self.__livro = Livro
 
   def retornaLivro(self,titulo):
@@ -12,21 +13,7 @@ class CtrlLivro:
               return livro
       return False
 
-  @codigo.setter
-  def codigo(self,codigo):
-      self.__codigo  = codigo
 
-  @titulo.setter
-  def titulo(self,titulo):
-      self.__titulo = titulo
-
-  @ano.setter
-  def ano(self, ano):
-      self.__ano = ano
-
-  @editora.setter
-  def editora(self, editora):
-      self.__editora = editora
 
   def incluirAutor(self, autor: Autor):
       if isinstance(autor, Autor):
