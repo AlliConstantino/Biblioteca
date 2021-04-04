@@ -4,7 +4,7 @@ class TelaLivro():
     def tela_opcoes(self):
         print("-------- LIVROS ----------")
         print("1 - Incluir livro")
-        print("2 - Alterar livro")
+        print("2 - Excluir livro")
         print("3 - Mostrar livro")
         print("0 - Retornar")
 
