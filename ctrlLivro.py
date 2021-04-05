@@ -1,12 +1,25 @@
 from autor import Autor
 from livro import Livro
 from telaLivro import TelaLivro
+#from ctrlBiblioteca import CtrlBiblioteca
 
 class CtrlLivro:
   def __init__(self):
     self.__telaLivro = TelaLivro()
     self.__livro = Livro
-
+    
+    
+  def abre_tela(self):
+      opcao = self.__telaLivro.tela_opcoes()
+      if opcao == 1:
+        self.__telaLivro.incluirLivro()
+      elif opcao == 2:
+        self.__telaLivro.excluirLivro()
+      elif opcao == 3:
+        self.__telaLivro.mostraLivro()
+      elif opcao != 0:
+        self.abre_tela()
+            
   def retornaLivro(self,titulo):
       for livro in self.__lista_livros:
           if(livro.titulo == titulo):
@@ -38,6 +51,7 @@ class CtrlLivro:
       else:
           print('Autor invalido.')
 
+    
   def editaLivro(self, titulo, autor, genero, capitulo):
       # metodo para editar o livro
       return False
@@ -45,10 +59,6 @@ class CtrlLivro:
       # Metodo para checar se livro esta emprestado ou nao
 
       #tá certo sera?
-      
-  def abre_tela(self):
-    return False
-  
   def checaStatus(self, livro):
       # Pergunta pro usuario qual livro ele quer checar
       livroAChecar = input("Qual livro você quer checar se esta disponivel?")
