@@ -1,3 +1,4 @@
+
 class TelaLivro():
     # mostra nome do livro
     def tela_opcoes(self):
@@ -21,3 +22,17 @@ class TelaLivro():
 
     def incluirLivro(self, titulo, capitulo, autor):
         return self.ctrlBiblioteca.inclui_livro(self,titulo,capitulo,autor)
+        
+    def pega_nome(self, tipo: str):
+        continua = True
+        while continua:
+            titulo = tipo.upper()
+            print("-------- %s ---------" % titulo)
+            titulo = input("Titulo: ")
+            continua = any(char.isdigit() for char in titulo)
+            if continua:
+                print('Digite um nome válido')
+
+        return {"Titulo": titulo}
+
+
