@@ -25,6 +25,9 @@ class TelaLivro():
         return{"Autor", autor}
         
     def pega_dados_livro():
+        #recebe o que foi digitado pelo user
+        #armazena no array 
+        #return um print("Livro adicionado")
         return False
 
 
