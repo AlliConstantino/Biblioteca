@@ -1,7 +1,7 @@
 
-from livro import Livro
-from telaLivro import TelaLivro
-from telaBiblioteca import TelaBiblioteca
+from MVC.Model.livro import Livro
+from MVC.View.telaLivro import TelaLivro
+from MVC.View.telaBiblioteca import TelaBiblioteca
 
 
 class CtrlLivro:
@@ -12,8 +12,6 @@ class CtrlLivro:
         self.__livros = []
 
     def abre_tela(self):
-        #from ctrlBiblioteca import CtrlBiblioteca
-        #self.__ctrlBiblioteca = CtrlBiblioteca()
         while True:
             opcao = self.telaLivro.tela_opcoes()
             if opcao == 1:

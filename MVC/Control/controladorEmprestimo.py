@@ -1,9 +1,8 @@
-
-from ctrlLivro import CtrlLivro
-from controladorUsuario import ControladorUsuario
-from telaEmprestimo import TelaEmprestimo
-from emprestimo import Emprestimo
-from dataEmprestimo import DataEmprestimo
+from MVC.Model.emprestimo import Emprestimo
+from MVC.Control.ctrlLivro import CtrlLivro
+from MVC.Control.controladorUsuario import ControladorUsuario
+from MVC.View.telaEmprestimo import TelaEmprestimo
+from MVC.Model.dataEmprestimo import DataEmprestimo
 from datetime import datetime
 from datetime import timedelta as td
 
@@ -14,15 +13,15 @@ class ControladorEmprestimo():
         self.__emprestimo = []
 
         self.__tela_emprestimo = TelaEmprestimo()
-        self.__controlador_livro = CtrlLivro(self)
-        self.__controlador_usuario = ControladorUsuario(self)
+        self.__controlador_livro = CtrlLivro()
+        self.__controlador_usuario = ControladorUsuario()
         self.__data_emprestimo = DataEmprestimo()
 
 
     def inclui_emprestimo(self):
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
         livro = self.__ctrlBiblioteca.ctrlLivro.retornaLivro(dados_emprestimo["tituloLivro"])
-        usuario = self.__ctrlBiblioteca.controladorUsuario.retornaUsuario(dados_emprestimo["nomeUsuario"])
+        usuario = self.__controlador_usuario.retornaUsuario(dados_emprestimo["nomeUsuario"])
         if livro:
             if usuario:
                 emprestimo = Emprestimo(livro, usuario, DataEmprestimo())
@@ -46,7 +45,6 @@ class ControladorEmprestimo():
             tempoEmEmprestimo = abs((atual - inicial).days)
             return 'Seu emprestimo foi feito há ' + str(tempoEmEmprestimo) + ' dias'
 
-
     def lista_emprestimos(self):
         for emprestimo in self.__emprestimo:
             self.__tela_emprestimo.mostra_emprestimo({"tituloLivro": emprestimo.livro.titulo, "nomeUsuario": emprestimo.usuario.nome,
@@ -58,7 +56,8 @@ class ControladorEmprestimo():
         emprestimo_existe = self.retornaEmprestimo(dados_emprestimo['tituloLivro'])
         if emprestimo_existe:
             index = self.__emprestimo.index(emprestimo_existe)
-            self.__emprestimo[index].dataEmprestimo.dataFinal = self.__emprestimo[index].dataEmprestimo.dataFinal + td(days=7)
+            self.__emprestimo[index].dataEmprestimo.dataFinal = self.__emprestimo[index].dataEmprestimo.dataFinal + td(
+                days=7)
             print('Empréstimo renovado para mais 7 dias!')
         else:
             print("Esse empréstimo ainda não foi criado.")

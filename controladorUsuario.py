@@ -1,17 +1,15 @@
-import email
 
-import aluno
-import professor
-import usuario
 from telaBiblioteca import TelaBiblioteca
 from telaUsuario import TelaUsuario
 from aluno import Aluno
 from professor import Professor
 
 
+
 class ControladorUsuario():
 
-    def __init__(self):
+    def __init__(self, ctrlBiblioteca):
+        self.__ctrlBiblioteca = ctrlBiblioteca
         self.__alunos = []
         self.__professores = []
 
@@ -94,7 +92,7 @@ class ControladorUsuario():
             print('Esse professor já existe.')
         else:
             dados_professor = self.__telaUsuario.pega_dados_usuario()
-            professor = Professor(dados_professor["Nome"], dados_professor["Telefone"], dados_professor['Email'],
+            professor = Professor(nome_professor["Nome"], dados_professor["Telefone"], dados_professor['Email'],
                               dados_professor['Data de nascimento'],
                               dados_professor['Ano atual'])
 
@@ -113,7 +111,7 @@ class ControladorUsuario():
         professor_existe = self.retornaUsuario(nome_professor['Nome'], 'professor')
 
         if professor_existe:
-            self.__professor.remove(professor_existe)
+            self.__professores.remove(professor_existe)
 
             print("Professor exluído com sucesso.")
         else:
@@ -125,7 +123,7 @@ class ControladorUsuario():
         if professor_existe:
             dados_professor = self.__telaUsuario.pega_dados_usuario()
             index = self.__professores.index(professor_existe)
-            self.__professores[index].nome = dados_professor["Nome"]
+            self.__professores[index].nome = nome_professor["Nome"]
             self.__professores[index].telefone = dados_professor["Telefone"]
             self.__professores[index].email = dados_professor['Email']
             self.__professores[index].data_nascimento = dados_professor['Data de nascimento']
@@ -137,8 +135,8 @@ class ControladorUsuario():
 
 
     def abre_tela(self):
-        from ctrlBiblioteca import CtrlBiblioteca
-        self.__ctrlBiblioteca = CtrlBiblioteca()
+        #from ctrlBiblioteca import CtrlBiblioteca
+        #self.__ctrlBiblioteca = CtrlBiblioteca()
         while True:
             opcao = self.__telaUsuario.tela_opcoes()
             if opcao == 1:
