@@ -24,7 +24,7 @@ class CtrlBiblioteca():
     def startSystem(self):
         self.abre_tela()
 
-    def inclui_livro(self,titulo,capitulo,autor):
+    def inclui_livro(self):
         titulo = input("Titulo: ")
         capitulo = input("Capitulo: ")
         autor = input("Autor: ")
