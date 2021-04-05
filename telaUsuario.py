@@ -29,7 +29,6 @@ class TelaUsuario():
         return {"Telefone": telefone, 'Email': email,
                 'Data de nascimento': data_nascimento, 'Ano atual': ano_atual}
 
-        #telefone int; dtaa no formato solicitado
 
     def pega_nome(self, tipo: str):
         continua = True

@@ -19,11 +19,13 @@ class ControladorEmprestimo():
         self.__controlador_livro = CtrlLivro()
         self.__controlador_usuario = ControladorUsuario()
         self.__data_emprestimo = DataEmprestimo()
-        #self.__ctrlBiblioteca = CtrlBiblioteca()
+
 
     def inclui_emprestimo(self):
+        from ctrlBiblioteca import CtrlBiblioteca
+        self.__ctrlBiblioteca = CtrlBiblioteca()
         dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
-        livro = self.__controlador_livro.retornaLivro(dados_emprestimo["tituloLivro"])
+        livro = self.__ctrlBiblioteca.retornaLivro(dados_emprestimo["tituloLivro"])
         usuario = self.__controlador_usuario.retornaUsuario(dados_emprestimo["nomeUsuario"])
         if livro:
             if usuario:

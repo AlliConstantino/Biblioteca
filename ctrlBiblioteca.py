@@ -20,18 +20,28 @@ class CtrlBiblioteca():
         self.__controladorEmprestimo = ControladorEmprestimo()
         self.__telaBiblioteca = TelaBiblioteca()
         self.__telaLivro = TelaLivro()
+        self.__livros = []  # array que vai guardar a lista de livros
 
     def startSystem(self):
         self.abre_tela()
 
     def inclui_livro(self):
-        titulo = input("Titulo: ")
-        capitulo = input("Capitulo: ")
-        autor = input("Autor: ")
-        
+        nome_livro = self.__telaBiblioteca.pega_titulo('Titulo')
+        livro_existe = self.retornaLivro(nome_livro['Titulo'])
 
-        return {"Titulo": titulo, 'capitulo': capitulo,
-                'autor': autor}
+        if livro_existe:
+            print('Esse livro já existe.')
+        else:
+            dados_livro = self.__telaBiblioteca.pega_dados_livro()
+            livro = Livro(nome_livro["Titulo"], dados_livro["Autor"], dados_livro["Editora"])
+            self.__livros.append(livro)
+            print("Livro adicionado com sucesso!")
+
+    def retornaLivro(self, titulo):
+        for livro in self.__livros:
+            if livro.titulo == titulo:
+                return livro
+        return False
 
     def exclui_livro(self, livro: Livro):
         if isinstance(livro, Livro):

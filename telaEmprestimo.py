@@ -17,10 +17,10 @@ class TelaEmprestimo():
 
   def pega_dados_emprestimo(self):
     print("-------- INCLUIR EMPRESTIMO ----------")
-    tituloLivro = input("Título do livro: ")
-    nomeUsuario = input("Nome de quem irá emprestá-lo: ")
+    titulo = input("Título do livro: ")
+    usuario = input("Nome de quem irá emprestá-lo: ")
 
-    return {"tituloLivro": tituloLivro, "nomeUsuario": nomeUsuario}
+    return {"tituloLivro": titulo, "nomeUsuario": usuario}
 
   def mostra_emprestimo(self, dados_emprestimo):
     print('O livro emprestado é: %s' %(dados_emprestimo["tituloLivro"]))

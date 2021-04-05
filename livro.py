@@ -7,21 +7,16 @@ from capitulo import Capitulo
 class Livro:
     def __init__(
             self,
-            codigo: int,
             titulo: str,
-            status: str,
-            ano: int,
             editora: Editora,
-            autor: Autor,
-            numeroCapitulo: int,
-            tituloCapitulo: str):
-        self.__codigo = codigo
+            autor: Autor,):
+        #self.__codigo = codigo
         self.__titulo = titulo
-        self.__ano = ano
+        #self.__ano = ano
         self.__editora = editora
         self.__autores = [autor]
-        self.__capitulos = [Capitulo(numeroCapitulo, tituloCapitulo)]
-        self.__status = status
+        #self.__capitulos = [Capitulo(numeroCapitulo, tituloCapitulo)]
+        #self.__status = status
 
     @property
     def codigo(self):
