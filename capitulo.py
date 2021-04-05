@@ -3,6 +3,7 @@ class Capitulo:
   def __init__(self, numeroCap: int, nomeCap: str):
         self.__numeroCap = numeroCap
         self.__nomeCap = nomeCap
+
   #getter numeroCap
   @property
   def mostraNumeroCap(self):

@@ -11,15 +11,11 @@ class TelaLivro():
         opcao = int(input("Escolha a opcao: "))
         return opcao
 
+    #sem função no código
     def pega_autor(self,autor):
         autor = input("Autor: ")
 
         return{"Autor", autor}
 
-    def pega_dados_livro():
-        #recebe o que foi digitado pelo user
-        #armazena no array
-        #return um print("Livro adicionado")
-        return False
 
 

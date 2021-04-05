@@ -1,7 +1,7 @@
 class Autor:
-    def __init__(self, codigo: int, nome: str):
+    def __init__(self, codigo: int, autor: str):
         self.__codigo = codigo
-        self.__nome = nome
+        self.__autor = autor
 
     @property
     def codigo(self):
@@ -12,9 +12,9 @@ class Autor:
         self.__codigo = codigo
 
     @property
-    def nome(self):
-        return self.__nome
+    def autor(self):
+        return self.__autor
 
-    @nome.setter
-    def nome(self, nome):
-        self.__nome = nome
+    @autor.setter
+    def autor(self, autor):
+        self.__autor = autor

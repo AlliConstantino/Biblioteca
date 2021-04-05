@@ -9,7 +9,7 @@ class Livro:
             self,
             titulo: str,
             editora: Editora,
-            autor: Autor,):
+            autor: Autor): #apaguei os outros (codigo, capitulos, status) pois não foram implementados
         #self.__codigo = codigo
         self.__titulo = titulo
         #self.__ano = ano

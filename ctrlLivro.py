@@ -26,14 +26,14 @@ class CtrlLivro:
               break
 
 
-    
+    #não está funcionando
   def editaLivro(self, titulo, autor, genero, capitulo):
       # metodo para editar o livro
       return False
 
       # Metodo para checar se livro esta emprestado ou nao
 
-      #tá certo sera?
+  # não está funcionando
   def checaStatus(self, livro):
       # Pergunta pro usuario qual livro ele quer checar
       livroAChecar = input("Qual livro você quer checar se esta disponivel?")
