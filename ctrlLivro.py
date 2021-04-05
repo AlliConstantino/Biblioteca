@@ -1,24 +1,27 @@
 from autor import Autor
 from livro import Livro
 from telaLivro import TelaLivro
-#from ctrlBiblioteca import CtrlBiblioteca
+
 
 class CtrlLivro:
   def __init__(self):
     self.__telaLivro = TelaLivro()
     self.__livro = Livro
-    
-    
+
   def abre_tela(self):
-      opcao = self.__telaLivro.tela_opcoes()
-      if opcao == 1:
-        self.__telaLivro.incluirLivro()
-      elif opcao == 2:
-        self.__telaLivro.excluirLivro()
-      elif opcao == 3:
-        self.__telaLivro.mostraLivro()
-      elif opcao != 0:
-        self.abre_tela()
+      from ctrlBiblioteca import CtrlBiblioteca
+      self.__ctrlBiblioteca = CtrlBiblioteca()
+      while True:
+          opcao = self.__telaLivro.tela_opcoes()
+          if opcao == 1:
+              self.__ctrlBiblioteca.inclui_livro()
+          elif opcao == 2:
+              self.editaLivro()
+          elif opcao == 3:
+              self.__telaLivro.mostraLivro()
+          elif opcao == 0:
+              self.__ctrlBiblioteca.abre_tela()
+              break
             
   def retornaLivro(self,titulo):
       for livro in self.__lista_livros:
