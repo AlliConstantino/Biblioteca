@@ -10,6 +10,7 @@ from ctrlLivro import CtrlLivro
 from controladorUsuario import ControladorUsuario
 from controladorEmprestimo import ControladorEmprestimo
 from telaBiblioteca import TelaBiblioteca
+from telaLivro import TelaLivro
 
 
 class CtrlBiblioteca():
@@ -18,22 +19,19 @@ class CtrlBiblioteca():
         self.__controladorUsuario = ControladorUsuario()
         self.__controladorEmprestimo = ControladorEmprestimo()
         self.__telaBiblioteca = TelaBiblioteca()
+        self.__telaLivro = TelaLivro()
 
     def startSystem(self):
         self.abre_tela()
 
-    def inclui_livro(self):
-        if isinstance(livro, Livro):
-            livro_incluso = False
-            for i in self.__livros:
-                if i.codigo == livro.codigo:
-                    livro_incluso = True
-            if not livro_incluso:
-                self.__livros.append(livro)
-            else:
-                print('O livro ja estava incluso.')
-        else:
-            print('Livro invalido.')
+    def inclui_livro(self,titulo,capitulo,autor):
+        titulo = input("Titulo: ")
+        capitulo = input("Capitulo: ")
+        autor = input("Autor: ")
+        
+
+        return {"Titulo": titulo, 'capitulo': capitulo,
+                'autor': autor}
 
     def exclui_livro(self, livro: Livro):
         if isinstance(livro, Livro):
