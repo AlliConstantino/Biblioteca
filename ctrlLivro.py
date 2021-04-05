@@ -6,7 +6,7 @@ from telaLivro import TelaLivro
 class CtrlLivro:
   def __init__(self):
     self.__telaLivro = TelaLivro()
-    self.__livro = Livro
+    self.__lista_livros = []
 
   def abre_tela(self):
       from ctrlBiblioteca import CtrlBiblioteca
@@ -23,7 +23,7 @@ class CtrlLivro:
               self.__ctrlBiblioteca.abre_tela()
               break
             
-  def retornaLivro(self,titulo):
+  def retornaLivro(self, titulo):
       for livro in self.__lista_livros:
           if(livro.titulo == titulo):
               return livro
