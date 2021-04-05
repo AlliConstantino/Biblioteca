@@ -1,59 +1,45 @@
 from autor import Autor
 from livro import Livro
 from telaLivro import TelaLivro
-
+from livro import Livro
+from telaLivro import TelaLivro
 
 class CtrlLivro:
   def __init__(self):
-    self.__telaLivro = TelaLivro()
-    self.__lista_livros = []
-
+    self.telaLivro = TelaLivro()
+    self.__livro = Livro
+    self.livros = [] #array que vai guardar a lista de livros
+    
+    
   def abre_tela(self):
-      from ctrlBiblioteca import CtrlBiblioteca
-      self.__ctrlBiblioteca = CtrlBiblioteca()
-      while True:
-          opcao = self.__telaLivro.tela_opcoes()
-          if opcao == 1:
-              self.__ctrlBiblioteca.inclui_livro()
-          elif opcao == 2:
-              self.editaLivro()
-          elif opcao == 3:
-              self.__telaLivro.mostraLivro()
-          elif opcao == 0:
-              self.__ctrlBiblioteca.abre_tela()
-              break
+      opcao = self.telaLivro.tela_opcoes()
+      if opcao == 1:
+        self.incluirLivro()
+      elif opcao == 2:
+        self.excluirLivro()
+      elif opcao == 3:
+        self.__mostraLivro()
+      elif opcao != 0:
+        self.abre_tela()
             
-  def retornaLivro(self, titulo):
-      for livro in self.__lista_livros:
+  def retornaLivro(self,livros: []):
+      for livro in self.livros:
           if(livro.titulo == titulo):
               return livro
       return False
 
-  def incluirAutor(self, autor: Autor):
-      if isinstance(autor, Autor):
-          autor_incluso = False
-          for i in self.__autores:
-              if i.codigo == autor.codigo:
-                  autor_incluso = True
-          if not autor_incluso:
-              self.__autores.append(autor)
-          else:
-              print('O autor ja estava incluso.')
-      else:
-          print('Autor invalido.')
+  def incluirLivro(self):
+      nome_livro = self.telaLivro.pega_titulo('Titulo')
+      autor_livro = self.telaLivro.pega_autor('Autor')
+      livro_existe = self.retornaLivro(nome_livro['Titulo']) #serve para ver se o livro ja existe no array
 
-  def excluirAutor(self, autor: Autor):
-      if isinstance(autor, Autor):
-          autor_incluso = False
-          for i in self.__autores:
-              if i.codigo == autor.codigo:
-                  self.__autores.remove(i)
-                  autor_incluso = True
-          if not autor_incluso:
-              print('O autor nao estava incluso.')
+      if livro_existe:
+        print('Esse livro já existe.')
       else:
-          print('Autor invalido.')
-
+        dados_livro = self.telaLivro.pega_dados_livro()
+        livro = Livro(nome_livro["Titulo"], dados_livro["Autor"])
+        self.livros.append(livro)
+        print("Livro adicionado com sucesso!")
     
   def editaLivro(self, titulo, autor, genero, capitulo):
       # metodo para editar o livro
