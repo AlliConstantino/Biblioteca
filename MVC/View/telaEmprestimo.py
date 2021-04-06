@@ -1,3 +1,4 @@
+from MVC.View.tela import Tela
 
 
 class TelaEmprestimo():

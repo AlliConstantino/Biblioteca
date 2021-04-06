@@ -13,8 +13,8 @@ class ControladorEmprestimo():
         self.__emprestimo = []
 
         self.__tela_emprestimo = TelaEmprestimo()
-        self.__controlador_livro = CtrlLivro()
-        self.__controlador_usuario = ControladorUsuario()
+        self.__controlador_livro = CtrlLivro(self)
+        self.__controlador_usuario = ControladorUsuario(self)
         self.__data_emprestimo = DataEmprestimo()
 
 

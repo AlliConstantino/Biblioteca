@@ -1,6 +1,7 @@
+from MVC.View.tela import Tela
 
 
-class TelaBiblioteca:
+class TelaBiblioteca():
 
     def tela_opcoes(self):
         print("-------- BIBLIOTECA ---------")

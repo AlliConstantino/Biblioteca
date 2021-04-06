@@ -1,3 +1,5 @@
+from MVC.View.tela import Tela
+
 
 class TelaLivro():
     def tela_opcoes(self):

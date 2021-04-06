@@ -1,5 +1,7 @@
 import datetime
 
+from MVC.View.tela import Tela
+
 
 class TelaUsuario():
 

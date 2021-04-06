@@ -2,14 +2,19 @@ from MVC.View.telaBiblioteca import TelaBiblioteca
 from MVC.Control.ctrlLivro import CtrlLivro
 from MVC.Control.controladorUsuario import ControladorUsuario
 from MVC.Control.controladorEmprestimo import ControladorEmprestimo
+from MVC.View.telaLivro import TelaLivro
 
 
 class CtrlBiblioteca():
     def __init__(self):
-        self.__ctrlLivro = CtrlLivro()
-        self.__controladorUsuario = ControladorUsuario()
-        self.__controladorEmprestimo = ControladorEmprestimo()
+        self.__ctrlLivro = CtrlLivro(self)
+        self.__controladorUsuario = ControladorUsuario(self)
+        self.__controladorEmprestimo = ControladorEmprestimo(self)
         self.__telaBiblioteca = TelaBiblioteca()
+        self.__telaLivro = TelaLivro()
+
+    def startSystem(self):
+        self.abre_tela()
 
     @property
     def controladorUsuario(self):
@@ -25,10 +30,6 @@ class CtrlBiblioteca():
             self.__controladorEmprestimo.abre_tela()
         elif opcao != 0:
             self.abre_tela()
-
-    @property
-    def controladorUsuario(self):
-        return self.__controladorUsuario
 
     @property
     def controladorEmprestimo(self):
