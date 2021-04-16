@@ -8,3 +8,7 @@ class Tela(ABC):
   @abstractmethod
   def tela_opcoes(self):
     pass
+
+  @property
+  def controlador(self):
+    return self.__controlador

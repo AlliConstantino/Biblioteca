@@ -3,7 +3,9 @@ import datetime
 from MVC.View.tela import Tela
 
 
-class TelaUsuario():
+class TelaUsuario(Tela):
+    def __init__(self, controlador):
+        super().__init__(controlador)
 
     def tela_opcoes(self):
         print("-------- USUÁRIOS ----------")

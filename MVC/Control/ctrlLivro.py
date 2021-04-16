@@ -1,23 +1,22 @@
 
 from MVC.Model.livro import Livro
 from MVC.View.telaLivro import TelaLivro
-from MVC.View.telaBiblioteca import TelaBiblioteca
 
 
-class CtrlLivro:
+class CtrlLivro():
     def __init__(self, ctrlBiblioteca):
         self.__ctrlBiblioteca = ctrlBiblioteca
-        self.__telaBiblioteca = TelaBiblioteca()
-        self.telaLivro = TelaLivro()
+        #self.__telaBiblioteca = TelaBiblioteca(self)
+        self.__telaLivro = TelaLivro(self)
         self.__livros = []
 
     def abre_tela(self):
         while True:
-            opcao = self.telaLivro.tela_opcoes()
+            opcao = self.__telaLivro.tela_opcoes()
             if opcao == 1:
                 self.inclui_livro()
             elif opcao == 2:
-                self.excluirLivro()  # não funciona
+                self.excluirLivro()  #não funciona
             elif opcao == 3:
                 self.lista_livro()
             elif opcao == 0:
@@ -25,13 +24,13 @@ class CtrlLivro:
                 break
 
     def inclui_livro(self):
-        nome_livro = self.__telaBiblioteca.pega_titulo('Titulo')
+        nome_livro = self.__telaLivro.pega_titulo('Titulo') #verificar nomenclatura
         livro_existe = self.retornaLivro(nome_livro['Titulo'])
 
         if livro_existe:
             print('Esse livro já existe.')
         else:
-            dados_livro = self.__telaBiblioteca.pega_dados_livro()
+            dados_livro = self.__telaLivro.pega_dados_livro() #Colocar na tela do livro
             livro = Livro(nome_livro["Titulo"], dados_livro["Autor"], dados_livro["Editora"])
             self.__livros.append(livro)
             print("Livro adicionado com sucesso!")
@@ -57,7 +56,7 @@ class CtrlLivro:
     def lista_livro(self):
         if len(self.__livros) > 0:
             for livro in self.__livros:
-                self.__telaBiblioteca.mostra_livro(
+                self.__telaLivro.mostra_livro(
                     {'Titulo': livro.titulo, 'Autor': livro.autor, 'Editora': livro.editora})
         else:
             print('Nenhum livro cadastrado.')

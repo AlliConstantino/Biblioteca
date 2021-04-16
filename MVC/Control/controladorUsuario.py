@@ -1,5 +1,4 @@
 
-from MVC.View.telaBiblioteca import TelaBiblioteca
 from MVC.View.telaUsuario import TelaUsuario
 from MVC.Model.aluno import Aluno
 from MVC.Model.professor import Professor
@@ -12,9 +11,7 @@ class ControladorUsuario():
         self.__ctrlBiblioteca = ctrlBiblioteca
         self.__alunos = []
         self.__professores = []
-
-        self.__telaUsuario = TelaUsuario()
-        self.__telaBiblioteca = TelaBiblioteca()
+        self.__telaUsuario = TelaUsuario(self)
 
 
     # Aluno
@@ -84,7 +81,7 @@ class ControladorUsuario():
             print("Esse aluno não existe!")
 
     # Professor
-    def incluir_professor(self):
+    def incluir_professor(self): #aplicar Try except
         nome_professor = self.__telaUsuario.pega_nome('Professor')
         professor_existe = self.retornaUsuario(nome_professor['Nome'], 'professor')
 
@@ -135,8 +132,6 @@ class ControladorUsuario():
 
 
     def abre_tela(self):
-        #from ctrlBiblioteca import CtrlBiblioteca
-        #self.__ctrlBiblioteca = CtrlBiblioteca()
         while True:
             opcao = self.__telaUsuario.tela_opcoes()
             if opcao == 1:

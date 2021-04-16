@@ -10,8 +10,8 @@ class CtrlBiblioteca():
         self.__ctrlLivro = CtrlLivro(self)
         self.__controladorUsuario = ControladorUsuario(self)
         self.__controladorEmprestimo = ControladorEmprestimo(self)
-        self.__telaBiblioteca = TelaBiblioteca()
-        self.__telaLivro = TelaLivro()
+        self.__telaBiblioteca = TelaBiblioteca(self)
+        self.__telaLivro = TelaLivro(self)
 
     def startSystem(self):
         self.abre_tela()
@@ -40,3 +40,7 @@ class CtrlBiblioteca():
     def ctrlLivro(self):
 
         return self.__ctrlLivro
+
+    @property
+    def telaBiblioteca(self):
+        return self.__telaBiblioteca

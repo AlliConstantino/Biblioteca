@@ -12,7 +12,7 @@ class ControladorEmprestimo():
         self.__ctrlBiblioteca = ctrlBiblioteca
         self.__emprestimo = []
 
-        self.__tela_emprestimo = TelaEmprestimo()
+        self.__tela_emprestimo = TelaEmprestimo(self)
         self.__controlador_livro = CtrlLivro(self)
         self.__controlador_usuario = ControladorUsuario(self)
         self.__data_emprestimo = DataEmprestimo()
